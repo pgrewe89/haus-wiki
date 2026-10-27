@@ -25,7 +25,7 @@ typen/<typ>/typ.yaml      Gerätetyp (Hersteller, Modell) + Datenblätter im sel
 dokumente/<anlage>/<BMK>/ Fotos, Messprotokolle zu einem Element
 code/                     Software, z. B. ESPHome-YAML
 werkzeuge/                build.py, render.py, check.py, qet_import.py, Vorlagen, CSS/JS
-deploy/                   systemd-Timer und Caddy-Konfiguration für den Pi
+deploy/                   systemd-Benutzerdienste für den Pi (Webserver, Update-Timer)
 site/                     erzeugte Website (nicht in Git)
 ```
 
@@ -75,17 +75,21 @@ Benötigt: Python 3, PyYAML, Jinja2. Sonst nichts.
 
 ## Einrichtung auf dem Pi
 
+Läuft auf `claude-pi` als Benutzerdienste (systemd `--user`), ohne sudo. Benötigt nur git, python3-yaml und python3-jinja2.
+
 ```
-sudo apt install git python3-yaml python3-jinja2 caddy
-git clone git@github.com:pgrewe89/haus-wiki.git /home/pi/haus-wiki   # Zugriff per Deploy-Key (nur lesen)
-cd /home/pi/haus-wiki && python3 werkzeuge/build.py
+# Lesezugriff per Deploy-Key (nur lesen), Host-Alias in ~/.ssh/config:
+#   Host github-haus-wiki / HostName github.com / User git / IdentityFile ~/.ssh/haus_wiki_deploy
+git clone github-haus-wiki:pgrewe89/haus-wiki.git ~/haus-wiki
+cd ~/haus-wiki && python3 werkzeuge/build.py
 
-# Webserver
-sudo cp deploy/Caddyfile /etc/caddy/Caddyfile && sudo systemctl reload caddy
+# Webserver auf Port 8080 und Aktualisierung alle 10 Minuten (git pull + bauen)
+mkdir -p ~/.config/systemd/user && cp deploy/haus-wiki-* ~/.config/systemd/user/
+systemctl --user daemon-reload
+systemctl --user enable --now haus-wiki-web.service haus-wiki-update.timer
 
-# Automatisch aktualisieren (alle 10 Minuten git pull + bauen)
-sudo cp deploy/haus-wiki-update.* /etc/systemd/system/
-sudo systemctl daemon-reload && sudo systemctl enable --now haus-wiki-update.timer
+# Damit die Dienste ohne Anmeldung laufen (einmalig; auf claude-pi bereits aktiv)
+loginctl enable-linger $USER
 ```
 
-Danach ist das Wiki unter `http://<pi-adresse>:8080/` erreichbar. Benutzername und Pfad in `deploy/` ggf. anpassen.
+Danach ist das Wiki unter `http://<pi-adresse>:8080/` erreichbar (zurzeit http://192.168.188.90:8080/).

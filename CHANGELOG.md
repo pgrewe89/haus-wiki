@@ -2,6 +2,11 @@
 
 Jede Ausbaustufe bekommt hier einen kurzen Eintrag. Die einzelnen Änderungen stehen zusätzlich in der Git-Historie.
 
+## Pi-Einrichtung (27.10.2026)
+
+- Wiki läuft auf `claude-pi` unter http://192.168.188.90:8080/ und aktualisiert sich alle 10 Minuten von `main`.
+- `deploy/` auf Benutzerdienste ohne sudo umgestellt (Python-Webserver statt Caddy), Anleitung im README angepasst.
+
 ## Stufe 1: Hauptverteilung (27.10.2026)
 
 - Grundgerüst: YAML-Daten je BMK, Gerätetypen, Generator `werkzeuge/build.py`, Prüfung `werkzeuge/check.py`.
