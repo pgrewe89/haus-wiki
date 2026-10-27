@@ -9,25 +9,12 @@ import html
 import re
 import xml.etree.ElementTree as ET
 
-# Umrechnung QElectroTech-Szene -> PDF-Seite (A4 quer, 842 x 595 pt).
-# QElectroTech skaliert den Folio-Rahmen (17 x 60 + 20 breit, plus 2 x 5 Rand)
-# auf die Seitenbreite und zentriert ihn. Für Blätter mit anderer Spaltenzahl
-# muss das neu bestimmt werden (check.py warnt, wenn das Format abweicht).
-SEITE_B, SEITE_H = 842.0, 595.0
-_SZENE_B = 17 * 60 + 20 + 10
-MASSSTAB = (SEITE_B - 2 * 24.25) / _SZENE_B
-VERSATZ = 24.25
-
 BMK_MUSTER = re.compile(r"^-?\d+[A-Z]+\d+$")
 
 
-def nach_pdf(x, y):
-    return VERSATZ + x * MASSSTAB, VERSATZ + y * MASSSTAB
-
-
-def rechteck_nach_pdf(x, y, b, h):
-    px, py = nach_pdf(x, y)
-    return [round(px, 2), round(py, 2), round(b * MASSSTAB, 2), round(h * MASSSTAB, 2)]
+def rechteck(x, y, b, h):
+    """Rechteck in Szenen-Koordinaten (= Koordinaten im gerenderten SVG)."""
+    return [round(x, 2), round(y, 2), round(b, 2), round(h, 2)]
 
 
 def bmk_normal(label):

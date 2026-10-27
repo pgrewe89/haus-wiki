@@ -1,12 +1,11 @@
 """Erzeugt die statische Website in site/.
 
 Aufruf:  python3 werkzeuge/build.py
-Benötigt: python3-yaml, python3-jinja2, pdftocairo (Paket poppler-utils).
+Benötigt: python3-yaml, python3-jinja2. Die Pläne zeichnet werkzeuge/render.py direkt aus der .qet.
 """
 import html
 import re
 import shutil
-import subprocess
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -16,6 +15,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 sys.path.insert(0, str(Path(__file__).parent))
 import daten  # noqa: E402
 import qet  # noqa: E402
+import render  # noqa: E402
 
 WURZEL = Path(__file__).resolve().parent.parent
 SITE = WURZEL / "site"
@@ -31,18 +31,18 @@ def _enthaltend(rechtecke, px, py, max_seite=130):
 
 
 def klickflaechen(blatt, ansicht):
-    """Liste von (bmk, rechteck_in_pdf_koordinaten) für ein Blatt."""
+    """Liste von (bmk, rechteck_in_svg_koordinaten) für ein Blatt."""
     flaechen = []
     if not ansicht:
         schon = set()
         for e in blatt["elemente"]:
             if e["bmk"] and e["rect"]:
-                flaechen.append((e["bmk"], qet.rechteck_nach_pdf(*e["rect"])))
+                flaechen.append((e["bmk"], qet.rechteck(*e["rect"])))
                 schon.add(e["bmk"])
         for t in blatt["texte"]:
             bmk = qet.bmk_normal(t["zeilen"][0])
             if bmk and bmk not in schon:
-                flaechen.append((bmk, qet.rechteck_nach_pdf(*qet.text_rechteck(t))))
+                flaechen.append((bmk, qet.rechteck(*qet.text_rechteck(t))))
         return flaechen
     # Ansichtsblatt: Beschriftungen liegen in Rechtecken (Geräte in der Front,
     # Zeilen der BMK-Legende). Die Klickfläche ist das kleinste umgebende Rechteck.
@@ -63,22 +63,11 @@ def klickflaechen(blatt, ansicht):
             if darunter:
                 g = min(darunter, key=lambda g: g[1])
                 r = qet._vereinige((t["x"], t["y"] + 2, 20, 12), g)
-        flaechen.append((bmk, qet.rechteck_nach_pdf(*r)))
+        flaechen.append((bmk, qet.rechteck(*r)))
     return flaechen
 
 
 # ---------------------------------------------------------------- SVG
-
-def pdf_seite_als_svg(pdf, seite):
-    if not shutil.which("pdftocairo"):
-        sys.exit("pdftocairo fehlt (Paket poppler-utils installieren)")
-    aus = subprocess.run(["pdftocairo", "-svg", "-f", str(seite), "-l", str(seite), str(pdf), "-"],
-                         check=True, capture_output=True).stdout.decode("utf-8")
-    aus = re.sub(r"<\?xml[^>]*\?>\s*", "", aus)
-    # feste Größe entfernen, damit das SVG mit dem Container skaliert
-    aus = re.sub(r'<svg([^>]*?) width="[^"]*" height="[^"]*"', r'<svg\1 class="plan-svg" preserveAspectRatio="xMidYMid meet"', aus, count=1)
-    return aus
-
 
 def svg_mit_flaechen(svg, flaechen, elemente, link):
     teile = ['<g class="klick">']
@@ -193,7 +182,7 @@ def main():
     anzahl = 0
     for aid, a in d["anlagen"].items():
         cfg = a["cfg"]
-        pdf = WURZEL / cfg["_ordner"] / cfg["plan"]["pdf"]
+        _, zeichne = render.lade(WURZEL / cfg["_ordner"] / cfg["plan"]["qet"])
         plan = {b["nr"]: b for b in a["plan"]}
         vorkommen = {}  # bmk -> [(blatt, ansicht)]
         for b in cfg.get("blaetter", []):
@@ -203,7 +192,7 @@ def main():
                 vorkommen.setdefault(bmk, [])
                 if (b["nr"], ansicht) not in vorkommen[bmk]:
                     vorkommen[bmk].append((b["nr"], ansicht))
-            svg = svg_mit_flaechen(pdf_seite_als_svg(pdf, b["nr"]), flaechen, a["elemente"],
+            svg = svg_mit_flaechen(zeichne(b["nr"]), flaechen, a["elemente"],
                                    lambda bmk: f"{daten.dateiname(bmk)}.html")
             schreibe(f"{aid}/blatt-{b['nr']}.html", "blatt.html", anlage=a, blatt=b, svg=svg,
                      fehlende=[bmk for bmk, _ in flaechen if bmk not in a["elemente"]])

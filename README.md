@@ -7,7 +7,7 @@ Einstieg ist der klickbare Schaltplan; jedes Element führt zu Kenndaten, Gerät
 
 - **Daten und Darstellung getrennt.** Alles Inhaltliche steht in YAML-Dateien. Die Website in `site/` wird daraus erzeugt und nie von Hand bearbeitet.
 - **BMK verknüpft alles.** Jedes Element hat ein Betriebsmittelkennzeichen nach DIN EN 81346 (z. B. `-4F3`). Dateiname = BMK ohne Minus (`4F3.yaml`).
-- **Schaltpläne bleiben in QElectroTech.** Die `.qet`-Datei liefert die Positionen der Klickflächen, das PDF die Zeichnung.
+- **Schaltpläne im QElectroTech-Format.** Die `.qet`-Datei ist die einzige Quelle der Zeichnung. `werkzeuge/render.py` zeichnet daraus die SVG-Pläne; QElectroTech selbst wird nicht gebraucht, kann die Datei aber jederzeit öffnen.
 - **Status je Element und je Wert:** `geprueft` (vor Ort oder per Dokument bestätigt), `ungeprueft` (aus dem Plan übernommen), `fehlt` (Angabe fehlt noch).
 - **Keine geratenen Werte.** Was unklar ist, kommt unter `offene_punkte` und erscheint auf der Prüfliste.
 
@@ -19,12 +19,12 @@ offene-punkte.yaml        Prüfpunkte ohne festes Gerät
 CHANGELOG.md              Was sich je Ausbaustufe geändert hat
 anlagen/<anlage>/
   anlage.yaml             Name, Ort, Blätter
-  plan/                   .qet-Quelle und PDF-Export
+  plan/                   .qet-Quelle (+ ursprünglicher PDF-Plan zum Nachschlagen)
   elemente/<BMK>.yaml     ein Element pro Datei
 typen/<typ>/typ.yaml      Gerätetyp (Hersteller, Modell) + Datenblätter im selben Ordner
 dokumente/<anlage>/<BMK>/ Fotos, Messprotokolle zu einem Element
 code/                     Software, z. B. ESPHome-YAML
-werkzeuge/                build.py, check.py, qet_import.py, Vorlagen, CSS/JS
+werkzeuge/                build.py, render.py, check.py, qet_import.py, Vorlagen, CSS/JS
 deploy/                   systemd-Timer und Caddy-Konfiguration für den Pi
 site/                     erzeugte Website (nicht in Git)
 ```
@@ -52,12 +52,17 @@ offene_punkte:
 
 Nach der Prüfung vor Ort: Wert korrigieren, `status: geprueft` setzen, erledigten Punkt löschen.
 
-## Plan geändert?
+## Pflege der Pläne
 
-1. In QElectroTech bearbeiten und als `.qet` speichern.
-2. Als PDF exportieren (alle Blätter) und beide Dateien unter `anlagen/<anlage>/plan/` ersetzen.
-3. `python3 werkzeuge/qet_import.py anlagen/<anlage>` legt Dateien für neue BMK an (bestehende bleiben unberührt).
-4. `python3 werkzeuge/check.py` zeigt Abweichungen zwischen Plan und Daten.
+Pläne und Daten pflegt Claude. Jede Änderung kommt als Pull Request mit Vorher/Nachher-Bildern
+der betroffenen Blätter; nach der Freigabe („passt“) wird gemergt und der Pi übernimmt sie automatisch.
+
+Ablauf einer Planänderung:
+
+1. `.qet` unter `anlagen/<anlage>/plan/` bearbeiten (Elemente, Leiter, Texte).
+2. `python3 werkzeuge/qet_import.py anlagen/<anlage>` legt YAML-Dateien für neue BMK an (bestehende bleiben unberührt).
+3. `python3 werkzeuge/check.py` zeigt Abweichungen zwischen Plan und Daten.
+4. `python3 werkzeuge/build.py` und Sichtprüfung der Blätter.
 
 ## Bauen
 
@@ -66,12 +71,12 @@ python3 werkzeuge/check.py     # Widersprüche anzeigen
 python3 werkzeuge/build.py     # Website nach site/ erzeugen
 ```
 
-Benötigt: Python 3, PyYAML, Jinja2, `pdftocairo` (Paket poppler-utils).
+Benötigt: Python 3, PyYAML, Jinja2. Sonst nichts.
 
 ## Einrichtung auf dem Pi
 
 ```
-sudo apt install git python3-yaml python3-jinja2 poppler-utils caddy
+sudo apt install git python3-yaml python3-jinja2 caddy
 git clone git@github.com:pgrewe89/haus-wiki.git /home/pi/haus-wiki   # Zugriff per Deploy-Key (nur lesen)
 cd /home/pi/haus-wiki && python3 werkzeuge/build.py
 

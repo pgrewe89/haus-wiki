@@ -1,0 +1,20 @@
+name: Prüfen
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  pruefen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pyyaml jinja2
+      - name: Daten prüfen
+        run: python3 werkzeuge/check.py
+      - name: Website bauen
+        run: python3 werkzeuge/build.py

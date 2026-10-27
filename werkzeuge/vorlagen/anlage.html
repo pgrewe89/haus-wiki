@@ -14,5 +14,5 @@
 {% for e in liste|sort(attribute='bmk') %}<tr><td><a href="{{ e._name }}.html">{{ e.bmk }}</a></td><td>{{ e.bezeichnung or '–' }}</td><td>{{ status(e.status) }}</td></tr>{% endfor %}
 </table>{% endif %}
 {% endfor %}
-<p class="quelle"><a href="{{ root }}dateien/{{ anlage.cfg._ordner }}/{{ anlage.cfg.plan.pdf }}">Original-PDF</a> · <a href="{{ root }}dateien/{{ anlage.cfg._ordner }}/{{ anlage.cfg.plan.qet }}">QElectroTech-Datei</a></p>
+<p class="quelle"><a href="{{ root }}dateien/{{ anlage.cfg._ordner }}/{{ anlage.cfg.plan.qet }}">QElectroTech-Datei</a>{% if anlage.cfg.plan.original_pdf %} · <a href="{{ root }}dateien/{{ anlage.cfg._ordner }}/{{ anlage.cfg.plan.original_pdf }}">Ursprünglicher PDF-Plan</a>{% endif %}</p>
 {% endblock %}
