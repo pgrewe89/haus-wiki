@@ -1,0 +1,20 @@
+bmk: "-1W3"
+bezeichnung: null
+art: kabel
+blatt: 1
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 1"
+
+werte:
+  kabeltyp: { wert: "NYY-J", status: ungeprueft }
+  aufbau: { wert: "1x16mm²", status: ungeprueft }
+
+typ: null
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte:
+  - "Anfang und Ende des Kabels im Plan nicht beschriftet; vor Ort bestimmen."

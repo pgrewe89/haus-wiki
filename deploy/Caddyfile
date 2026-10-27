@@ -1,0 +1,7 @@
+# Liefert das Haus-Wiki im Heimnetz aus (nur statische Dateien).
+# Port bei Bedarf anpassen, falls 80 schon belegt ist (z. B. durch Home Assistant).
+:8080 {
+	root * /home/pi/haus-wiki/site
+	file_server
+	encode gzip
+}

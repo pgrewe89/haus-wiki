@@ -1,0 +1,20 @@
+bmk: "-3F1"
+bezeichnung: "Vorsicherung PV Wechselrichter"
+art: leitungsschutzschalter
+blatt: 3
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 3"
+
+werte:
+  bemessung: { wert: "B16A", status: ungeprueft }
+  beschreibung_im_plan: { wert: "Leitungsschutzschalter B16A", status: ungeprueft }
+
+typ: abb-s203
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte:
+  - 'Bezeichnung im Plan "2609696 S203": Bedeutung der Nummer 2609696 klären.'

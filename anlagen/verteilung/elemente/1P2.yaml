@@ -1,0 +1,17 @@
+bmk: "-1P2"
+bezeichnung: "ESS Smartmeter"
+art: energiezaehler
+blatt: 1
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 1"
+
+werte: {}
+
+typ: victron-em540
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte: []

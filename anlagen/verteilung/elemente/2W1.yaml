@@ -1,0 +1,20 @@
+bmk: "-2W1"
+bezeichnung: "Zuleitung Wärmepumpe Hydraulikmodul"
+art: kabel
+blatt: 2
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 2"
+abgang: "Wärmepumpe Hydraulikmodul"      # aus der Lage im Plan abgeleitet
+
+werte:
+  kabeltyp: { wert: "NYM-J", status: ungeprueft }
+  aufbau: { wert: "5x2,5mm²", status: ungeprueft }
+
+typ: null
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte: []

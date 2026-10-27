@@ -1,0 +1,18 @@
+{% extends "basis.html" %}
+{% from "makros.html" import status %}
+{% block titel %}{{ anlage.cfg.name }}{% endblock %}
+{% block inhalt %}
+{% set blatt = none %}
+{% include "blattleiste.html" %}
+<h1>{{ anlage.cfg.name }} {{ status(anlage.cfg.status) }}</h1>
+<p>{{ anlage.cfg.beschreibung }}</p>
+<p>Einbauort: {{ anlage.cfg.ort or 'fehlt noch' }}</p>
+{% for b in anlage.cfg.blaetter %}
+<h2><a href="blatt-{{ b.nr }}.html">Blatt {{ b.nr }}: {{ b.titel }}</a></h2>
+{% set liste = anlage.elemente.values()|selectattr('blatt', 'equalto', b.nr)|list %}
+{% if liste %}<table class="liste">
+{% for e in liste|sort(attribute='bmk') %}<tr><td><a href="{{ e._name }}.html">{{ e.bmk }}</a></td><td>{{ e.bezeichnung or '–' }}</td><td>{{ status(e.status) }}</td></tr>{% endfor %}
+</table>{% endif %}
+{% endfor %}
+<p class="quelle"><a href="{{ root }}dateien/{{ anlage.cfg._ordner }}/{{ anlage.cfg.plan.qet }}">QElectroTech-Datei</a>{% if anlage.cfg.plan.original_pdf %} · <a href="{{ root }}dateien/{{ anlage.cfg._ordner }}/{{ anlage.cfg.plan.original_pdf }}">Ursprünglicher PDF-Plan</a>{% endif %}</p>
+{% endblock %}

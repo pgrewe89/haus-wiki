@@ -1,0 +1,36 @@
+{% extends "basis.html" %}
+{% from "makros.html" import status, dokliste %}
+{% block titel %}{{ e.bmk }} {{ e.bezeichnung or '' }}{% endblock %}
+{% block inhalt %}
+{% set aid = anlage.id %}
+<p class="pfad"><a href="index.html">{{ anlage.cfg.name }}</a> › <a href="blatt-{{ e.blatt }}.html">Blatt {{ e.blatt }}</a></p>
+<h1><span class="bmk">{{ e.bmk }}</span> {{ e.bezeichnung or 'Bezeichnung fehlt' }}</h1>
+<p>{{ status(e.status) }} {{ ART_TEXT.get(e.art, e.art) }}{% if e.abgang %} · Abgang: {{ e.abgang }}{% endif %}</p>
+
+<div class="aktionen">
+  {% for nr, ansicht in vorkommen %}<a class="knopf" href="blatt-{{ nr }}.html#{{ e.bmk }}">{{ 'In Schrankansicht zeigen' if ansicht else 'Im Plan zeigen (Blatt ' ~ nr ~ ')' }}</a>{% endfor %}
+  {% for u in e.unterplaene or [] %}{% set ua, _, ub = u.partition('/') %}<a class="knopf" href="{{ root }}{{ ua }}/{{ 'blatt-' ~ ub if ub else 'index' }}.html">Unterplan: {{ anlagen[ua].cfg.name }}{% if ub %} Blatt {{ ub }}{% endif %}</a>{% endfor %}
+  {% for l in e.links or [] %}<a class="knopf" href="{{ l.url }}">{{ l.titel or l.url }}</a>{% endfor %}
+</div>
+
+<h2>Kenndaten</h2>
+<table class="daten">
+  {% for name, wert, st, notiz in werte_liste(e) %}
+  <tr><th>{{ name|replace('_', ' ')|capitalize }}</th><td>{{ wert if wert is not none else '–' }}{% if notiz %}<br><small>{{ notiz }}</small>{% endif %}</td><td>{{ status(st) }}</td></tr>
+  {% endfor %}
+  <tr><th>Hersteller / Typ</th><td>{% if typ %}<a href="{{ root }}typen/{{ e.typ }}.html">{{ typ.hersteller }} {{ typ.modell }}</a>{% else %}–{% endif %}</td><td>{{ status(typ.status if typ else 'fehlt') }}</td></tr>
+  <tr><th>Seriennummer</th><td>{{ e.seriennummer or '–' }}</td><td>{% if e.seriennummer %}{{ status(e.status) }}{% endif %}</td></tr>
+  <tr><th>Einbaudatum</th><td>{{ e.einbaudatum or '–' }}</td><td>{% if e.einbaudatum %}{{ status(e.status) }}{% endif %}</td></tr>
+</table>
+
+{% if e.offene_punkte %}
+<h2>Offene Punkte</h2>
+<ul class="offen">{% for p in e.offene_punkte %}<li>{{ p }}</li>{% endfor %}</ul>
+{% endif %}
+
+<h2>Dokumente und Fotos</h2>
+{{ dokliste(e.dokumente, root ~ 'dateien/dokumente/' ~ aid ~ '/' ~ e._name ~ '/') }}
+{% if typ and typ.dokumente %}<p>Vom Gerätetyp:</p>{{ dokliste(typ.dokumente, root ~ 'dateien/' ~ typ._ordner ~ '/') }}{% endif %}
+
+<p class="quelle">Quelle: {{ e.quelle or '–' }}{% if bearbeiten(e._datei) %} · <a href="{{ bearbeiten(e._datei) }}">Datei bearbeiten</a>{% endif %} · <code>{{ e._datei }}</code></p>
+{% endblock %}

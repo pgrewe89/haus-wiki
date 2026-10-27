@@ -1,0 +1,6 @@
+titel: Haus-Wiki
+# Für den Link "Datei bearbeiten" auf jeder Seite (nur zum Bearbeiten, nicht für den Betrieb nötig).
+repo_url: https://github.com/pgrewe89/haus-wiki
+zweig: main
+anlagen:
+  - verteilung

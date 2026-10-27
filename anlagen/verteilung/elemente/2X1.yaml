@@ -1,0 +1,18 @@
+bmk: "-2X1"
+bezeichnung: "Klemmleiste Wärmepumpe Hydraulikmodul, Wärmepumpe"
+art: klemmleiste
+blatt: 2
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 2"
+abgang: "Wärmepumpe Hydraulikmodul, Wärmepumpe"      # aus der Lage im Plan abgeleitet
+
+werte: {}
+
+typ: null
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte: []

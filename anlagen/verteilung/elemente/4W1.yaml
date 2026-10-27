@@ -1,0 +1,20 @@
+bmk: "-4W1"
+bezeichnung: "Zuleitung Garten"
+art: kabel
+blatt: 4
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 4"
+abgang: "Garten"      # aus der Lage im Plan abgeleitet
+
+werte:
+  kabeltyp: { wert: "NYY-J", status: ungeprueft }
+  aufbau: { wert: "3x2,5mm²", status: ungeprueft }
+
+typ: null
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte: []

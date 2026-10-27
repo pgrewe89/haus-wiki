@@ -1,0 +1,29 @@
+{% extends "basis.html" %}
+{% from "makros.html" import status, elink %}
+{% block titel %}Prüfliste{% endblock %}
+{% block inhalt %}
+<h1>Prüfliste</h1>
+<p>Alles, was vor Ort geprüft oder nachgetragen werden muss. Erledigt wird ein Punkt, indem die YAML-Datei angepasst wird (Wert eintragen, Status auf <code>geprueft</code>, Punkt aus <code>offene_punkte</code> entfernen).</p>
+{% set fehler = meldungen|selectattr(0, 'equalto', 'fehler')|list %}
+{% if meldungen %}
+<h2>Widersprüche zwischen Plan und Daten</h2>
+<ul class="offen">{% for stufe, text, bezug in meldungen %}<li class="{{ stufe }}"><code>{{ bezug }}</code>: {{ text }}</li>{% endfor %}</ul>
+{% endif %}
+{% set allgemein = offene|rejectattr('status', 'equalto', 'erledigt')|list %}
+{% if allgemein %}
+<h2>Allgemein</h2>
+<ul class="offen">{% for p in allgemein %}<li>{{ p.text }}{% if p.bezug %} <small>({{ p.bezug }})</small>{% endif %}</li>{% endfor %}</ul>
+{% endif %}
+<h2>Je Element ({{ zeilen|length }})</h2>
+<table class="liste pruef">
+<thead><tr><th>BMK</th><th>Bezeichnung</th><th>Status</th><th>Zu tun</th></tr></thead>
+<tbody>
+{% for z in zeilen %}
+<tr class="{{ 'wichtig' if z.punkte }}"><td>{{ elink(z.anlage, z.e, root) }}<br><small>Blatt {{ z.e.blatt }}</small></td><td>{{ z.e.bezeichnung or '–' }}</td><td>{{ status(z.e.status) }}</td>
+<td>{% if z.punkte %}<ul>{% for p in z.punkte %}<li>{{ p }}</li>{% endfor %}</ul>{% endif %}
+{% if z.fehlt %}<div><strong>Fehlt:</strong> {{ z.fehlt|join(', ')|replace('_', ' ') }}</div>{% endif %}
+{% if z.ungeprueft %}<div><strong>Bestätigen:</strong> {{ z.ungeprueft|join(', ')|replace('_', ' ') }}</div>{% endif %}
+{% if z.e.status != 'geprueft' and not z.punkte and not z.fehlt and not z.ungeprueft %}<div>Element vor Ort bestätigen.</div>{% endif %}</td></tr>
+{% endfor %}
+</tbody></table>
+{% endblock %}

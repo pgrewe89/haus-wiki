@@ -1,0 +1,19 @@
+bmk: "-4F6"
+bezeichnung: "Vorsicherung Reserve"
+art: leitungsschutzschalter
+blatt: 4
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 4"
+
+werte:
+  bemessung: { wert: "B16A", status: ungeprueft }
+  beschreibung_im_plan: { wert: "Leitungsschutzschalter B16A", status: ungeprueft }
+
+typ: abb-s201
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte: []

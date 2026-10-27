@@ -1,0 +1,18 @@
+bmk: "-3X1"
+bezeichnung: "Klemmleiste Wechselrichter, ESS L1–L3"
+art: klemmleiste
+blatt: 3
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 3"
+abgang: "Wechselrichter, ESS L1–L3"      # aus der Lage im Plan abgeleitet
+
+werte: {}
+
+typ: null
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte: []

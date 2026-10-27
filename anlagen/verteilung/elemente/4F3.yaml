@@ -1,0 +1,19 @@
+bmk: "-4F3"
+bezeichnung: "Vorsicherung Wallbox"
+art: leitungsschutzschalter
+blatt: 4
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 4"
+
+werte:
+  bemessung: { wert: "B25A", status: ungeprueft }
+
+typ: null
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte:
+  - "Bemessung B25A gegen Zuleitung -4W2 (NYM-J 5x2,5 mm²) und Verlegeart prüfen."

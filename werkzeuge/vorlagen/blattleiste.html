@@ -1,0 +1,3 @@
+<nav class="blaetter">
+{% for b in anlage.cfg.blaetter %}<a href="blatt-{{ b.nr }}.html" class="{{ 'aktiv' if blatt and b.nr == blatt.nr }}">{{ b.nr }} {{ b.titel }}</a>{% endfor %}
+</nav>

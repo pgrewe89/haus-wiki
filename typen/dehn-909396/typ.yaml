@@ -1,0 +1,12 @@
+id: dehn-909396
+hersteller: DEHN
+modell: "909396"
+art: ueberspannungsschutz
+status: ungeprueft
+quelle: 'Plansymbol und Beschriftung "Dehn 909396" (-1F2)'
+
+# Datenblätter und Anleitungen in diesen Ordner legen und hier eintragen,
+# z. B. - { titel: Datenblatt, datei: datenblatt.pdf }
+dokumente: []
+links: []          # z. B. Herstellerseite
+einstellungen: {}  # Standard-Einstellungen, falls relevant

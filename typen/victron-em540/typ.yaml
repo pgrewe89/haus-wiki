@@ -1,0 +1,12 @@
+id: victron-em540
+hersteller: Victron
+modell: "EM540"
+art: energiezaehler
+status: ungeprueft
+quelle: 'Plansymbol und Beschriftung "Victron EM540" (-1P2, -2P1, -3P1)'
+
+# Datenblätter und Anleitungen in diesen Ordner legen und hier eintragen,
+# z. B. - { titel: Datenblatt, datei: datenblatt.pdf }
+dokumente: []
+links: []          # z. B. Herstellerseite
+einstellungen: {}  # Standard-Einstellungen, falls relevant

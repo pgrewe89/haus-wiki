@@ -1,0 +1,19 @@
+id: verteilung
+name: Hauptverteilung
+ort: null            # fehlt: Raum/Einbauort eintragen
+status: ungeprueft
+beschreibung: >
+  Zählerschrank mit Einspeisung, Wärmepumpe, Photovoltaik/ESS und Haus 1.
+  Übernommen aus "Schaltplan Elektroverteilung 2026" (Autor P. Beckhuis, Stand 15.06.2026).
+
+plan:
+  qet: plan/verteilung.qet                     # einzige Quelle der Zeichnung (QElectroTech-Format)
+  original_pdf: plan/original-2026-06-15.pdf   # ursprünglicher PDF-Plan, nur zum Nachschlagen
+
+startblatt: 1
+blaetter:
+  - { nr: 1, titel: Einspeisung }
+  - { nr: 2, titel: Wärmepumpe }
+  - { nr: 3, titel: Photovoltaik }
+  - { nr: 4, titel: Haus 1 }
+  - { nr: 5, titel: Schaltschrankansicht, ansicht: true }

@@ -1,0 +1,19 @@
+bmk: "-1F1"
+bezeichnung: "SLS Schalter 35A"
+art: sls-schalter
+blatt: 1
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 1"
+
+werte:
+  bemessung: { wert: "35A", status: ungeprueft }
+  beschreibung_im_plan: { wert: "SLS", status: ungeprueft }
+
+typ: abb-s751-3-e35
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte: []

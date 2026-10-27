@@ -1,0 +1,9 @@
+[Unit]
+Description=Haus-Wiki alle 10 Minuten aktualisieren
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=10min
+
+[Install]
+WantedBy=timers.target

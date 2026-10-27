@@ -1,0 +1,20 @@
+bmk: "-2F3"
+bezeichnung: "Vorsicherung Wärmepumpe"
+art: leitungsschutzschalter
+blatt: 2
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 2"
+
+werte:
+  bemessung: { wert: "C16A", status: ungeprueft }
+  beschreibung_im_plan: { wert: "Leitungsschutzschalter B16A", status: ungeprueft }
+
+typ: abb-s201
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte:
+  - 'Widerspruch im Plan: Beschriftung "C16A", Beschreibung "Leitungsschutzschalter B16A". Charakteristik am Gerät ablesen.'

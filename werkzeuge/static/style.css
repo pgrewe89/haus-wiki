@@ -1,0 +1,61 @@
+:root {
+  --bg: #fafaf8; --fl: #ffffff; --tx: #1d1d1b; --tx2: #5c5c57; --rand: #d9d8d2; --akz: #1f5fbf;
+  --ok: #1d7a3a; --ok-bg: #e3f3e7; --warn: #a15c00; --warn-bg: #fdf0db; --krit: #b3261e; --krit-bg: #fbe4e2;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #161615; --fl: #1f1f1d; --tx: #ecebe6; --tx2: #a9a8a1; --rand: #3a3a36; --akz: #7aa7ff;
+    --ok: #6fd08c; --ok-bg: #173322; --warn: #f0b45c; --warn-bg: #3a2a10; --krit: #ff8a80; --krit-bg: #3d1916; }
+  .plan { background: #f4f4f1; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--tx); }
+a { color: var(--akz); }
+main { max-width: 1200px; margin: 0 auto; padding: 16px; }
+.kopf { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; padding: 10px 16px; background: var(--fl); border-bottom: 1px solid var(--rand); position: sticky; top: 0; z-index: 5; }
+.kopf .marke { font-weight: 700; text-decoration: none; color: var(--tx); }
+.kopf nav { display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.kopf nav a { text-decoration: none; }
+.suche { margin-left: auto; }
+.suche input, .filter { font: inherit; padding: 6px 10px; border: 1px solid var(--rand); border-radius: 6px; background: var(--bg); color: var(--tx); width: 100%; max-width: 260px; }
+.filter { max-width: 420px; margin-bottom: 12px; }
+h1 { font-size: 1.4rem; margin: 8px 0; }
+h2 { font-size: 1.1rem; margin: 24px 0 8px; }
+.bmk { font-family: ui-monospace, Menlo, Consolas, monospace; }
+.pfad, .quelle, .fuss, .legende { color: var(--tx2); font-size: .9rem; }
+.fuss { text-align: center; padding: 24px 16px; }
+.badge { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: .8rem; font-weight: 600; border: 1px solid; white-space: nowrap; }
+.badge.st-geprueft { color: var(--ok); background: var(--ok-bg); }
+.badge.st-ungeprueft { color: var(--warn); background: var(--warn-bg); }
+.badge.st-fehlt { color: var(--krit); background: var(--krit-bg); }
+.blaetter { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; }
+.blaetter a { padding: 6px 12px; border: 1px solid var(--rand); border-radius: 6px; text-decoration: none; white-space: nowrap; background: var(--fl); }
+.blaetter a.aktiv { border-color: var(--akz); font-weight: 600; }
+.planleiste { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; }
+.zoom button, .knopf { font: inherit; padding: 6px 12px; border: 1px solid var(--rand); border-radius: 6px; background: var(--fl); color: var(--tx); cursor: pointer; text-decoration: none; display: inline-block; }
+.aktionen { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.plan { overflow: auto; border: 1px solid var(--rand); border-radius: 8px; background: #fff; -webkit-overflow-scrolling: touch; }
+.plan-svg { display: block; width: 100%; height: auto; }
+.seite-blatt main { max-width: none; }
+.hs rect { fill: rgba(31, 95, 191, 0); stroke-width: 1.2; }
+.hs.st-geprueft rect { stroke: #1d7a3a; }
+.hs.st-ungeprueft rect { stroke: #d08a1c; stroke-dasharray: 3 2; }
+.hs.st-fehlt rect { stroke: #b3261e; }
+.hs:hover rect, .hs:focus rect { fill: rgba(31, 95, 191, .15); }
+.hs.aktiv rect { fill: rgba(31, 95, 191, .25); stroke: #1f5fbf; stroke-width: 2.5; stroke-dasharray: none; }
+table { border-collapse: collapse; width: 100%; background: var(--fl); }
+th, td { text-align: left; vertical-align: top; padding: 6px 10px; border-bottom: 1px solid var(--rand); }
+.daten th { width: 35%; font-weight: 600; }
+.liste td:first-child { white-space: nowrap; font-family: ui-monospace, Menlo, Consolas, monospace; }
+.pruef ul, .offen { margin: 0; padding-left: 18px; }
+.offen li.fehler { color: var(--krit); }
+.warnung { color: var(--krit); }
+.leer { color: var(--tx2); }
+.text { max-width: 760px; }
+@media (max-width: 640px) {
+  .kopf { position: static; }
+  .suche { margin-left: 0; width: 100%; }
+  .suche input { max-width: none; }
+  .liste th:nth-child(3), .liste td:nth-child(3), .liste th:nth-child(4), .liste td:nth-child(4) { display: none; }
+  .pruef th:nth-child(3), .pruef td:nth-child(3) { display: table-cell; }
+  .pruef th:nth-child(2), .pruef td:nth-child(2) { display: none; }
+}
