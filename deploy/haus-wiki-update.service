@@ -1,0 +1,13 @@
+# Holt den aktuellen Stand von GitHub und baut die Website neu.
+# Installation: siehe README.md, Abschnitt "Einrichtung auf dem Pi".
+[Unit]
+Description=Haus-Wiki aktualisieren und bauen
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=pi
+WorkingDirectory=/home/pi/haus-wiki
+ExecStart=/usr/bin/git pull --ff-only
+ExecStart=/usr/bin/python3 werkzeuge/build.py

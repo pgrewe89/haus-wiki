@@ -1,0 +1,15 @@
+{% extends "basis.html" %}
+{% from "makros.html" import status, elink %}
+{% block titel %}Elemente{% endblock %}
+{% block inhalt %}
+<h1>Alle Elemente</h1>
+<input type="search" id="filter" class="filter" placeholder="Filtern nach BMK, Name, Typ, Status" aria-label="Filter">
+<table class="liste" id="elementliste">
+<thead><tr><th>BMK</th><th>Bezeichnung</th><th>Art</th><th>Typ</th><th>Status</th></tr></thead>
+<tbody>
+{% for aid, a in anlagen.items() %}{% for e in a.elemente.values()|sort(attribute='bmk') %}
+{% set t = typen.get(e.typ) %}
+<tr><td>{{ elink(aid, e, root) }}</td><td>{{ e.bezeichnung or '–' }}</td><td>{{ ART_TEXT.get(e.art, e.art) }}</td><td>{% if t %}{{ t.hersteller }} {{ t.modell }}{% else %}–{% endif %}</td><td>{{ status(e.status) }}</td></tr>
+{% endfor %}{% endfor %}
+</tbody></table>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "basis.html" %}
+{% block titel %}Blatt {{ blatt.nr }} {{ blatt.titel }}{% endblock %}
+{% block body_klasse %}seite-blatt{% endblock %}
+{% block inhalt %}
+{% include "blattleiste.html" %}
+<div class="planleiste">
+  <h1>{{ anlage.cfg.name }} · Blatt {{ blatt.nr }}: {{ blatt.titel }}</h1>
+  <div class="zoom">
+    <button type="button" data-zoom="-1" aria-label="Verkleinern">−</button>
+    <button type="button" data-zoom="0" aria-label="Einpassen">Einpassen</button>
+    <button type="button" data-zoom="1" aria-label="Vergrößern">+</button>
+  </div>
+</div>
+<p class="legende">Antippen öffnet das Gerät. Rahmenfarbe = Status:
+  <span class="badge st-geprueft">geprüft</span> <span class="badge st-ungeprueft">ungeprüft</span> <span class="badge st-fehlt">fehlt noch</span></p>
+{% if fehlende %}<p class="warnung">Im Plan, aber ohne Daten: {{ fehlende|join(', ') }}</p>{% endif %}
+<div class="plan" id="plan">{{ svg|safe }}</div>
+{% endblock %}

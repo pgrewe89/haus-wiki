@@ -1,0 +1,18 @@
+bmk: "-4F2"
+bezeichnung: "RCD Typ B Haus"
+art: fehlerstromschutzschalter
+blatt: 4
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 4"
+
+werte:
+  beschreibung_im_plan: { wert: "Fehlerstromschutzschalter TypB 30mA", status: ungeprueft }
+
+typ: abb-f204-b
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte: []

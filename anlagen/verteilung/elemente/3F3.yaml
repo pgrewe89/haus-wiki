@@ -1,0 +1,19 @@
+bmk: "-3F3"
+bezeichnung: "Vorsicherung ESS"
+art: leitungsschutzschalter
+blatt: 3
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 3"
+
+werte:
+  bemessung: { wert: "B16A", status: ungeprueft }
+  beschreibung_im_plan: { wert: "Leitungsschutzschalter B16A", status: ungeprueft }
+
+typ: abb-s201
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte: []

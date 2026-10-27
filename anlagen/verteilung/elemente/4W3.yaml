@@ -1,0 +1,20 @@
+bmk: "-4W3"
+bezeichnung: "Zuleitung Alter Verteiler im Flur, Erdgeschoss"
+art: kabel
+blatt: 4
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 4"
+abgang: "Alter Verteiler im Flur, Erdgeschoss"      # aus der Lage im Plan abgeleitet
+
+werte:
+  kabeltyp: { wert: "NYM-O", status: ungeprueft }
+  aufbau: { wert: "4x16mm²", status: ungeprueft }
+
+typ: null
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte: []

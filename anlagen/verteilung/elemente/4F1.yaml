@@ -1,0 +1,19 @@
+bmk: "-4F1"
+bezeichnung: "LS-RCD Garten"
+art: fi-ls-schalter
+blatt: 4
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 4"
+
+werte:
+  beschreibung_im_plan: { wert: "RCBO 1P+N", status: ungeprueft }
+
+typ: null
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte:
+  - "Bemessung (Nennstrom, Charakteristik, Bemessungsfehlerstrom) fehlt im Plan."

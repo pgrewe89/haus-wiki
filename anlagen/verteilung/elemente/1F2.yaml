@@ -1,0 +1,17 @@
+bmk: "-1F2"
+bezeichnung: "Überspannungsschutz inkl. Vorsicherung APZ/RFZ"
+art: ueberspannungsschutz
+blatt: 1
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 1"
+
+werte: {}
+
+typ: dehn-909396
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte: []

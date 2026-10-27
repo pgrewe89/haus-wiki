@@ -1,0 +1,9 @@
+# Prüfpunkte, die keinem einzelnen BMK zugeordnet sind.
+# Punkte zu einem Gerät stehen in dessen YAML unter "offene_punkte".
+# Status: offen | erledigt
+- text: "Elemente ohne BMK im Plan: Hausanschlusssicherung im HAK (50A), Schiene, 2× PAS. BMK vergeben?"
+  bezug: verteilung/1
+  status: offen
+- text: "Einbauort der Hauptverteilung eintragen (anlagen/verteilung/anlage.yaml, Feld ort)."
+  bezug: verteilung
+  status: offen

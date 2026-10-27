@@ -1,0 +1,20 @@
+bmk: "-2W2"
+bezeichnung: "Zuleitung Wärmepumpe"
+art: kabel
+blatt: 2
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 2"
+abgang: "Wärmepumpe"      # aus der Lage im Plan abgeleitet
+
+werte:
+  kabeltyp: { wert: "NYY-J", status: ungeprueft }
+  aufbau: { wert: "3x2,5mm²", status: ungeprueft }
+
+typ: null
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte: []

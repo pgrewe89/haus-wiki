@@ -1,0 +1,12 @@
+id: abb-f204-b
+hersteller: ABB
+modell: "F204 B"
+art: fehlerstromschutzschalter
+status: ungeprueft
+quelle: 'Feld "Typ" im Plan (-2F1, -4F2)'
+
+# Datenblätter und Anleitungen in diesen Ordner legen und hier eintragen,
+# z. B. - { titel: Datenblatt, datei: datenblatt.pdf }
+dokumente: []
+links: []          # z. B. Herstellerseite
+einstellungen: {}  # Standard-Einstellungen, falls relevant

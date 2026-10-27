@@ -1,0 +1,20 @@
+bmk: "-3W1"
+bezeichnung: "Zuleitung Wechselrichter Huawei Sun2000"
+art: kabel
+blatt: 3
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 3"
+abgang: "Wechselrichter Huawei Sun2000"      # aus der Lage im Plan abgeleitet
+
+werte:
+  kabeltyp: { wert: "NYM-J", status: ungeprueft }
+  aufbau: { wert: "5x1,5mm²", status: ungeprueft }
+
+typ: null
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte: []

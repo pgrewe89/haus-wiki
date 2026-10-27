@@ -1,0 +1,18 @@
+bmk: "-2F1"
+bezeichnung: "RCD Typ B Wärmepumpe"
+art: fehlerstromschutzschalter
+blatt: 2
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 2"
+
+werte:
+  beschreibung_im_plan: { wert: "Fehlerstromschutzschalter TypB 30mA", status: ungeprueft }
+
+typ: abb-f204-b
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte: []

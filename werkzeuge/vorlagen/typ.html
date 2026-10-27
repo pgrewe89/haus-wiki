@@ -1,0 +1,15 @@
+{% extends "basis.html" %}
+{% from "makros.html" import status, dokliste, elink %}
+{% block titel %}{{ t.hersteller }} {{ t.modell }}{% endblock %}
+{% block inhalt %}
+<p class="pfad">Gerätetyp</p>
+<h1>{{ t.hersteller }} {{ t.modell }}</h1>
+<p>{{ status(t.status) }} {{ ART_TEXT.get(t.art, t.art) }}</p>
+{% if t.einstellungen %}<h2>Einstellungen</h2><table class="daten">{% for k, v in t.einstellungen.items() %}<tr><th>{{ k }}</th><td>{{ v }}</td></tr>{% endfor %}</table>{% endif %}
+<h2>Datenblätter und Anleitungen</h2>
+{{ dokliste(t.dokumente, root ~ 'dateien/' ~ t._ordner ~ '/') }}
+{% if t.links %}<h2>Links</h2><ul>{% for l in t.links %}<li><a href="{{ l.url }}">{{ l.titel or l.url }}</a></li>{% endfor %}</ul>{% endif %}
+<h2>Verbaut als</h2>
+<ul>{% for aid, e in nutzer %}<li>{{ elink(aid, e, root) }} {{ e.bezeichnung or '' }}</li>{% endfor %}</ul>
+<p class="quelle">Quelle: {{ t.quelle or '–' }}{% if bearbeiten(t._datei) %} · <a href="{{ bearbeiten(t._datei) }}">Datei bearbeiten</a>{% endif %}</p>
+{% endblock %}

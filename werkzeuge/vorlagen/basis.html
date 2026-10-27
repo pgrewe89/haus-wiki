@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block titel %}{% endblock %} · {{ wiki.titel }}</title>
+<link rel="stylesheet" href="{{ root }}static/style.css">
+</head>
+<body class="{% block body_klasse %}{% endblock %}">
+<header class="kopf">
+  <a class="marke" href="{{ root }}index.html">{{ wiki.titel }}</a>
+  <nav>
+    {% for aid, a in anlagen.items() %}<a href="{{ root }}{{ aid }}/index.html">{{ a.cfg.name }}</a>{% endfor %}
+    <a href="{{ root }}elemente.html">Elemente</a>
+    <a href="{{ root }}pruefliste.html">Prüfliste</a>
+    <a href="{{ root }}aenderungen.html">Änderungen</a>
+  </nav>
+  <form class="suche" action="{{ root }}elemente.html" method="get">
+    <input type="search" name="q" placeholder="BMK oder Name suchen" aria-label="Suche">
+  </form>
+</header>
+<main>
+{% block inhalt %}{% endblock %}
+</main>
+<footer class="fuss">Erzeugt am {{ gebaut }} aus den Daten im Repository.</footer>
+<script src="{{ root }}static/app.js"></script>
+</body>
+</html>

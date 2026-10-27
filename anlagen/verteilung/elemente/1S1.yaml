@@ -1,0 +1,18 @@
+bmk: "-1S1"
+bezeichnung: "Schalter nach Z1"
+art: lasttrennschalter
+blatt: 1
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 1"
+
+werte:
+  beschreibung_im_plan: { wert: "Hauptschalter 63A", status: ungeprueft }
+
+typ: hager-sh363n
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte: []

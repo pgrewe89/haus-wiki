@@ -1,0 +1,19 @@
+bmk: "-4X2"
+bezeichnung: "Klemmleiste Wallbox 11kW"
+art: klemmleiste
+blatt: 4
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 4"
+abgang: "Wallbox 11kW"      # aus der Lage im Plan abgeleitet
+
+werte: {}
+
+typ: null
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte:
+  - "Unterschaltplan Wallbox fehlt noch (inkl. ESPHome-Konfiguration)."

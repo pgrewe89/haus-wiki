@@ -1,0 +1,19 @@
+bmk: "-4S1"
+bezeichnung: "Schalter Haus alter Verteiler im Flur, EG"
+art: lasttrennschalter
+blatt: 4
+status: ungeprueft
+quelle: "Schaltplan Elektroverteilung 2026 (.qet/PDF), Blatt 4"
+
+werte:
+  bemessung: { wert: "63A", status: ungeprueft }
+  beschreibung_im_plan: { wert: "Hauptschalter 63A", status: ungeprueft }
+
+typ: hager-sh363n
+seriennummer: null
+einbaudatum: null
+
+links: []
+dokumente: []
+
+offene_punkte: []

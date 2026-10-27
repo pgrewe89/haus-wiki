@@ -1,0 +1,11 @@
+{% macro status(st) -%}
+<span class="badge st-{{ st or 'fehlt' }}">{{ STATUS_TEXT.get(st, 'fehlt noch') }}</span>
+{%- endmacro %}
+{% macro elink(aid, e, root) -%}
+<a href="{{ root }}{{ aid }}/{{ e._name }}.html">{{ e.bmk }}</a>
+{%- endmacro %}
+{% macro dokliste(docs, basis) -%}
+{% if docs %}<ul class="doks">{% for d in docs %}
+  <li>{% if d.datei %}<a href="{{ basis }}{{ d.datei }}">{{ d.titel or d.datei }}</a>{% else %}<a href="{{ d.url }}">{{ d.titel or d.url }}</a>{% endif %}{% if d.status %} {{ status(d.status) }}{% endif %}</li>
+{% endfor %}</ul>{% else %}<p class="leer">Noch keine.</p>{% endif %}
+{%- endmacro %}
